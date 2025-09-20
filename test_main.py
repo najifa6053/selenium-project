@@ -27,10 +27,23 @@ def fill_text_inputs(driver):
     assert "Najifa Alam Esha" in output_name.text
     print("Text input test passed.")
 
+def radio_button_test(driver):
+    driver.get("https://demoqa.com/radio-button")
+    yes_radio = driver.find_element(By.XPATH, "//label[@for='yesRadio']")
+    yes_radio.click()
+    time.sleep(1)
+    impressive_radio = driver.find_element(By.XPATH, "//label[@for='impressiveRadio']")
+    impressive_radio.click()
+    time.sleep(1)
+    no_radio = driver.find_element(By.XPATH, "//label[@for='noRadio']")
+    no_radio.click() 
+    time.sleep(1)
 
+    output_yes = driver.find_element(By.XPATH, "//span[@class='text-success']")
+    assert "Impressive" in output_yes.text
 
 
 if __name__ == "__main__":
     driver = setup_driver()
-    fill_text_inputs(driver)
+    #fill_text_inputs(driver)
     radio_button_test(driver)
