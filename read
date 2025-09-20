@@ -1,0 +1,111 @@
+🔧 1. Install Python
+
+Make sure Python is installed:
+
+Download from: https://www.python.org/downloads/
+
+During installation, make sure to check ✅ "Add Python to PATH".
+
+Verify in terminal:
+
+python --version
+
+💻 2. Install VS Code
+
+Download from: https://code.visualstudio.com/
+
+Install the Python extension:
+
+Go to Extensions (⇧⌘X / Ctrl+Shift+X)
+
+Search for "Python" by Microsoft and install it.
+
+📁 3. Create Your Project Folder
+
+Create a folder and open it in VS Code:
+
+mkdir selenium-project
+cd selenium-project
+code .
+
+🧪 4. Set Up a Virtual Environment (Recommended)
+python -m venv venv
+
+
+Activate it:
+
+On Windows:
+
+venv\Scripts\activate
+
+
+On macOS/Linux:
+
+source venv/bin/activate
+
+📦 5. Install Selenium
+
+With your virtual environment activated, install Selenium:
+
+pip install selenium
+
+
+(Optionally) Save dependencies:
+
+pip freeze > requirements.txt
+
+🌐 6. Download the Appropriate WebDriver
+
+Selenium needs a browser driver. Download based on your browser:
+
+Chrome → ChromeDriver
+
+Firefox → GeckoDriver
+
+Edge → Edge WebDriver
+
+Make sure to:
+
+Match driver version to your browser version.
+
+Place the driver in your project folder or system PATH.
+
+🧪 7. Write a Sample Selenium Script
+
+Create a file test.py:
+
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.by import By
+import time
+
+# Set path to your chromedriver
+service = Service('./chromedriver')  # or full path to chromedriver
+driver = webdriver.Chrome(service=service)
+
+driver.get("https://www.google.com")
+print("Title:", driver.title)
+
+search_box = driver.find_element(By.NAME, "q")
+search_box.send_keys("Selenium Python")
+search_box.submit()
+
+time.sleep(5)
+driver.quit()
+
+
+⚠️ Make sure chromedriver is in the same directory or update the path.
+
+▶️ 8. Run the Script
+
+In VS Code terminal:
+
+python test.py
+
+🧠 Tips
+
+Use .env or config files to manage paths if your setup is more complex.
+
+You can install other useful packages like pytest or selenium-wire depending on your needs.
+
+Would you like a setup for a different language (e.g., Java, JavaScript) or browser automation example?
