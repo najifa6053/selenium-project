@@ -1,18 +1,21 @@
 import time
+import pytest
 from selenium.webdriver.common.by import By
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager    
+from webdriver_manager.chrome import ChromeDriverManager  
+from selenium.webdriver.common.action_chains import ActionChains  
 
-
+@pytest.fixture(scope="module")
 def setup_driver():
     service = Service(ChromeDriverManager().install())
     driver = webdriver.Chrome(service=service)
     driver.maximize_window()
-    return driver
+    yield driver
+    driver.quit()       
 
 
-def fill_text_inputs(driver):
+def test_fill_text_inputs(driver):
     driver.get("https://demoqa.com/text-box")
     name_text = driver.find_element(By.ID, "userName").send_keys("Najifa Alam Esha")
     time.sleep(1)
@@ -43,7 +46,3 @@ def radio_button_test(driver):
     assert "Impressive" in output_yes.text
 
 
-if __name__ == "__main__":
-    driver = setup_driver()
-    #fill_text_inputs(driver)
-    radio_button_test(driver)
